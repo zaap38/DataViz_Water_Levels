@@ -22,7 +22,7 @@ const legendColor = ["#002e4d", "#003d66", "#004d80", "#005c99", "#006bb3", "#00
 
 const svg = d3.select('#container').append("svg")
 	.attr("id", "svg")
-	.attr("width", 12 * (legendCellWidth + barSpace) + (legendCellWidth + barSpace) - barSpace)
+	.attr("width", 12 * (legendCellWidth + barSpace) + (legendCellWidth) + 10)
 	.attr("height", graphHeight)
 	.attr("transform", "translate(0, 100)")
 	.attr("class", "svg");

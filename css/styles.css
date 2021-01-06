@@ -14,63 +14,13 @@ html {
 	height : 100%;
 }
 
-#popup-story-telling {
-	border-radius: 2em;
-	position: absolute;
-	width: 40%;
-	border : 3px #636363 solid;
-	z-index: 2;
-	top: 30%;
-	left : 30%;
-	background-color: #F1C14C;
-}
-
-#popup-story-telling h1{
-	font-size: 1.5em;
-	text-align: center;
-	font-family: system-ui ,Georgia, 'Times New Roman', Times, serif;
-}
-
-#title-popup {
-	padding-left: 1em;
-}
-
-#popup-story-telling p{
-	font-size: 1em;
-	text-align: center;
-	font-family: system-ui ,Georgia, 'Times New Roman', Times, serif;
-}
-
-#text-popup {
-	margin-left : 4em;
-	margin-right : 4em;
-	margin-top : 2em;
-	margin-bottom: 2em;
-}
-
-#button-next {
-	color : #636363;
-	margin-top : 2em;
-}
-
-#button-next:hover {
-	font-style: italic;
-	cursor: pointer;
-}
-
-#exit {
-	float: right;
-	margin-right: 1em;
-	cursor: pointer;
-	color : #636363;
-}
-
-#exit:hover{
-	font-weight: bold;
-	margin-right: 0.95em;
+.modal{
+	display: block;
+	position: relative;
 }
 
 #popup-background {
+	display: none;
 	position: absolute;
 	z-index : 1;
 	width : 100%;
