@@ -6,29 +6,42 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-	<link href="./css/styles.css" rel="stylesheet">
+	<script src="https://d3js.org/d3-dsv.v1.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="./css/styles.css" rel="stylesheet">
 </head>
 
 <body>
 	<div id="popup-background"></div>
-	<div id ="container"></div>
-
-	<div id="popup" class="modal">
+	<div id="popup-start-vizu-1" class="modal">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
-					<p> Entête du pop-up </p>
+					<p>Savez vous quelle est, en moyenne, la hausse annuelle du niveau de l'eau globale ?</p>
 				</div>
 				<div class="modal-body">
-					<p> Je suis un magnifique pop-up</p>
+					<p>
+						De nos jours, le niveau global de l'eau connaît une hausse d'environ 3,3 millimètres par an, ce qui n'est pas énorme.
+						Cependant, cette augmentation n'est pas constante au fil du temps ... Et c'est bien ça le problème !</br>
+						Beaucoup de chercheurs prédisent une augmentation (linéaire pour les plus optimistes, exponentielle pour les plus pessismistes) de cette hausse.</br>
+
+						<img src="./img/Popup1.gif" id="popup-1-img"/>
+
+						</br>
+						
+						Mais comment faire pour changer ce courant ?
+					</p>
 				</div>
 				<div class="modal-footer">
-					<p> Footer du pop-up</p>
+					<button type="button" class="btn btn-secondary" id ="close" onclick="down(this);">Fermer</button>
+        			<button type="button" class="btn btn-primary" id="next" onclick="next(this);">Suivant</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div id ="container"></div>
 	
 	<script type="text/javascript" src ="./js/graph.js"></script>
+	<script type="text/javascript" src ="./js/popup.js"></script>
 </body>
