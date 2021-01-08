@@ -21,7 +21,7 @@ fontPolice = "verdana";
 const legendColor = ["#002e4d", "#003d66", "#004d80", "#005c99", "#006bb3", "#007acc", "#008ae6", "#0099ff", "#1aa3ff", "#33adff", "#4db8ff", "#66c2ff", "#80ccff", "#99d6ff", "#b3e0ff", "#ccebff", "#e6f5ff"];
 
 const svg = d3.select('#container').append("svg")
-	.attr("id", "svg")
+	.attr("id", "svg-1")
 	.attr("width", 12 * (legendCellWidth + barSpace) + (legendCellWidth) + 10)
 	.attr("height", graphHeight + 10)
 	.attr("transform", "translate(0, 100)")
@@ -112,3 +112,6 @@ d3.csv(
 			.style("font-family", fontPolice)
 			.text(function(d){return d.name});
 });
+
+$("body").prepend('<h1 id="svg-2">Visu 2</h1>')
+

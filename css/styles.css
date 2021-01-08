@@ -75,3 +75,8 @@ html {
 	margin-right: auto;
 	margin-top: 10%;
 }
+
+#svg-2 {
+	display: none;
+	text-align: center;
+}

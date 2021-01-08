@@ -17,7 +17,13 @@ function next(e) {
             }
         })
     } else { //Display a visualization
-        down(e)
+        var popup = $(".modal")
+        $(popup).css("display", "none");
+        $("#popup-background").css("display", "none");
+    }
+
+    if (popupId == 6) {
+        $(popup).attr("id", "popup-start-vizu-" + (popupId + 1));
     }
 }
 
@@ -26,24 +32,54 @@ function nextVizu() {
     var popupId = $(popup).attr("id")
     popupId = parseInt(popupId.split('-')[3]);
 
-    d3.dsv(';', "./db/ContentPopup.csv").then(function(data){
-        for (var i = 0; i < data.length; i++) {
-            //Search the next content
-            if (data[i].id == "popup-start-vizu-" + (popupId + 1)) {
-                $(".modal-header").html(data[i].header);
-                $(".modal-body").html(data[i].content);
-                $(popup).attr("id", "popup-start-vizu-" + (popupId + 1));
-                break;
+    if (popupId == 3 || popupId == 6) {
+        d3.dsv(';', "./db/ContentPopup.csv").then(function(data){
+            for (var i = 0; i < data.length; i++) {
+                //Search the next content
+                if (data[i].id == "popup-start-vizu-" + (popupId + 1)) {
+                    $(".modal-header").html(data[i].header);
+                    $(".modal-body").html(data[i].content);
+                    $(popup).attr("id", "popup-start-vizu-" + (popupId + 1));
+                    break;
+                }
             }
-        }
-    })
+        })
+    }
 
-    $(popup).css("display", "block");
-    $("#popup-background").css("display", "block");
+    if (popupId < 7) {
+        $(popup).css("display", "block");
+        $("#popup-background").css("display", "block");
+    }
+
+    //Switch to next visualization
+    var svgs = $("#container").children();
+
+    if(svgs.length == 1) {
+        // Display second visu
+        if($("#svg-1").css("display") == "block"){
+            $("#svg-1").css("display", "none");     
+            $("#svg-2").css("display", "block");
+        } /*else { //Display 2 vizu
+            $("#svg-1").css("display", "block");
+            $("#svg-2").css("display", "block");
+            $("#svg-2").css("float", "left");
+        }*/
+
+        //TODO : Faire visu 2
+    }
 }
 
 function down(e) {
     var popup = $(".modal")
     $(popup).css("display", "none");
     $("#popup-background").css("display", "none");
+
+    var popupId = $(popup).attr("id")
+    popupId = parseInt(popupId.split('-')[3]);
+
+    if (popupId < 4) {
+        $(popup).attr("id", "popup-start-vizu-3");
+    } else if (popupId > 3 && popupId < 7) {
+        $(popup).attr("id", "popup-start-vizu-7");
+    }
 }
