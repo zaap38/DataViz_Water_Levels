@@ -54,12 +54,24 @@ html {
 	text-align: center;
 }
 
-#popup-1-img{
+#popup-1-img, #popup-3-img{
 	width: 20%;
 	margin : 0.5em;
 }
 
-#popup-2-img {
+#popup-2-img, #popup-4-img {
 	width: 30%;
 	margin : 0.5em;
+}
+
+#popup-6-img {
+	width: 40%;
+	margin : 0.5em;
+}
+
+#next-vizu {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
 }
