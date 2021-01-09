@@ -3,7 +3,7 @@
  * Déclaration des variables
 **/
 const width = document.getElementById("container").offsetWidth * 0.90,
-graphHeight = 600,
+graphHeight = 700,
 
 /* Largeur des blocs de la légende du graphe */
 legendCellWidth = 80,
@@ -16,6 +16,12 @@ barSpace = 2;
 
 /* Police */
 fontPolice = "verdana";
+
+/* Tableau des prédictions du niveau des eaux */
+seaLevelPerYear = new Map();
+
+/* Ligne du niveau des eaux */
+seaLevelLine = null;
 
 /* Echelle de couleur pour la légende du graphe */
 const legendColor = ["#002e4d", "#003d66", "#004d80", "#005c99", "#006bb3", "#007acc", "#008ae6", "#0099ff", "#1aa3ff", "#33adff", "#4db8ff", "#66c2ff", "#80ccff", "#99d6ff", "#b3e0ff", "#ccebff", "#e6f5ff"];
@@ -98,7 +104,7 @@ d3.csv(
 			.attr("y", function(d){return graphHeight - d.elevation * legendCellHeight})
 			.attr("width", function(d){return barWidth})
 			.attr("height", function(d){return d.elevation * legendCellHeight})
-			.attr("fill", "black");
+			.attr("fill", "#303030");
 	
 	graph.selectAll("text")
 		.data(data)
@@ -111,6 +117,55 @@ d3.csv(
 			.style("text-anchor", "middle")
 			.style("font-family", fontPolice)
 			.text(function(d){return d.name});
+	
+	/**
+	 * Construction de la droite du niveau des eaux
+	**/	
+	seaLevelLine = graph.append("line")
+		.style("stroke", "#43CCFF")
+		.style("stroke-width", 5)
+		.attr("x1", 5)
+		.attr("y1", 50)
+		.attr("x2", (data.length - 1) * (barWidth+barSpace))
+		.attr("y2", 50);
+});
+
+function updateSeaLevel(yearSelected) {	
+	//modeSelected = document.getElementById("modeToggle").value;
+	modeSelected = 1;
+	
+	seaLevelPrediction = null;
+	
+	switch (modeSelected) {
+		case 0:
+			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
+			break;
+		case 1:
+			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[1];
+			break;
+		default:
+			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
+	}
+	
+	yPos = graphHeight - (seaLevelPrediction / 1000) * legendCellHeight;
+	
+	seaLevelLine
+		.attr("y1", yPos)
+		.attr("y2", yPos);
+}
+
+d3.select("#slider").on("input", function() {
+	updateSeaLevel(this.value);
+});
+
+d3.csv(
+	"./db/sea-level-predictions.csv"
+).then(function (data) {
+	for(var i= 0; i < data.length; i++)
+	{
+		predictions = [data[i].predNoCh, data[i].predWorstCh]
+		seaLevelPerYear.set(data[i].date, predictions);
+	}
 });
 
 $("body").prepend('<h1 id="svg-2">Visu 2</h1>')
