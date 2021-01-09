@@ -40,8 +40,13 @@
 		</div>
 	</div>
 	
-	<input id="slider" type="range" value="2020" min="2020" max="2100" step="1"/>
-	<div id ="container"></div>
+	
+	<div id ="container">
+		<h2 id="title">Prédiction du niveau des eaux pour l'année <span id="titleYear">2020</span>:</h2>
+		<h1 id="titlePrediction">0.0m</h1>
+		
+		<input id="slider" type="range" list="dates" value="2020" min="2020" max="2300" step="1"/>
+	</div>
 
 	<button type="button" class="btn btn-primary" id="next-vizu" onclick="nextVizu(this);">Suivant</button>
 	

@@ -3,7 +3,8 @@
  * Déclaration des variables
 **/
 const width = document.getElementById("container").offsetWidth * 0.90,
-graphHeight = 700,
+midWidth = width / 2,
+graphHeight = 500,
 
 /* Largeur des blocs de la légende du graphe */
 legendCellWidth = 80,
@@ -41,6 +42,52 @@ const graph = svg.append("g")
 const legend = svg.append("g")
 	.attr("width", legendCellWidth);
 
+/**
+ * Met à jour la position de la ligne en fonction de la prédiction à la date sélectionnée
+**/
+function updateSeaLevel(yearSelected) {
+	//modeSelected = document.getElementById("modeToggle").value;
+	modeSelected = 1;
+	
+	seaLevelPrediction = null;
+	
+	switch (modeSelected) {
+		case 0:
+			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
+			break;
+		case 1:
+			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[1];
+			break;
+		default:
+			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
+	}
+	
+	/* Mise à jour du titre */
+	document.getElementById("titleYear").innerHTML = yearSelected;
+	document.getElementById("titlePrediction").innerHTML = (seaLevelPrediction / 1000).toFixed(1) + "m";
+	
+	yPos = graphHeight - (seaLevelPrediction / 1000) * legendCellHeight;
+	
+	seaLevelLine
+		.attr("y1", yPos)
+		.attr("y2", yPos);
+}
+
+/* Modification du style des légendes / titres */
+d3.select("#title")
+	.style("text-align", "center")
+
+d3.select("#titlePrediction")
+	.style("text-align", "center")
+
+d3.select("#slider")
+	.style("width", "350px")
+	.style("height", "30px")
+	.style("display", "block")
+	.style("margin", "auto")
+	.on("input", function() {
+		updateSeaLevel(this.value);
+	});
 d3.csv(
 	"./db/world-countries-elevation.csv"
 ).then(function (data) {
@@ -125,37 +172,9 @@ d3.csv(
 		.style("stroke", "#43CCFF")
 		.style("stroke-width", 5)
 		.attr("x1", 5)
-		.attr("y1", 50)
+		.attr("y1", graphHeight)
 		.attr("x2", (data.length - 1) * (barWidth+barSpace))
-		.attr("y2", 50);
-});
-
-function updateSeaLevel(yearSelected) {	
-	//modeSelected = document.getElementById("modeToggle").value;
-	modeSelected = 1;
-	
-	seaLevelPrediction = null;
-	
-	switch (modeSelected) {
-		case 0:
-			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
-			break;
-		case 1:
-			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[1];
-			break;
-		default:
-			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
-	}
-	
-	yPos = graphHeight - (seaLevelPrediction / 1000) * legendCellHeight;
-	
-	seaLevelLine
-		.attr("y1", yPos)
-		.attr("y2", yPos);
-}
-
-d3.select("#slider").on("input", function() {
-	updateSeaLevel(this.value);
+		.attr("y2", graphHeight);
 });
 
 d3.csv(

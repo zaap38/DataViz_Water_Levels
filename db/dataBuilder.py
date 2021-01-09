@@ -84,22 +84,22 @@ with open("sea-level-predictions.csv", "w", newline="") as csvfile:
     predNoCh = []
     predWorstCh = []
 
-    for date in range(2020, 2101):
+    for date in range(2020, 2301):
         prediction = predictionWithoutChanges(date) - initialWithoutChanges
         worstPrediction = predictionWithWorstChanges(date) - initialWithWorstChanges
 
         writer.writerow({"date": date, "predNoCh": prediction, "predWorstCh": worstPrediction})
 
-        dates.append(date)
-        predNoCh.append(prediction)
-        predWorstCh.append(worstPrediction)
+        #dates.append(date)
+        #predNoCh.append(prediction)
+        #predWorstCh.append(worstPrediction)
 
-    smoothPredNoCh = savgol_filter(predNoCh, 51, 2)
-    plt.plot(dates, smoothPredNoCh)
-    smoothPredWorstCh = savgol_filter(predWorstCh, 51, 2)
-    plt.plot(dates, smoothPredWorstCh, color='red')
+    #smoothPredNoCh = savgol_filter(predNoCh, 51, 2)
+    #plt.plot(dates, smoothPredNoCh)
+    #smoothPredWorstCh = savgol_filter(predWorstCh, 51, 2)
+    #plt.plot(dates, smoothPredWorstCh, color='red')
 
-    plt.title("sea level predictions from 1993")
-    plt.xlabel("Dates")
-    plt.ylabel("Sea level predictions")
-    plt.show()
+    #plt.title("sea level predictions from 1993")
+    #plt.xlabel("Dates")
+    #plt.ylabel("Sea level predictions")
+    #plt.show()
