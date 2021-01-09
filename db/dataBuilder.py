@@ -34,25 +34,54 @@ def plotData(dates, seaLevels):
 
 
 #Ouvre le fichier de données et les ré-arrange
-with open("global_sea_lvl_nasa_db.csv", newline="") as f:
-    dates = []
-    seaLevels = []
+#with open("global_sea_lvl_nasa_db.csv", newline="") as f:
+    #dates = []
+    #seaLevels = []
 
-    lire = csv.reader(f, delimiter=";")
-    for ligne in lire:
-        dates.append(float(ligne[3]))
-        seaLevels.append(getFloatValue(ligne[6]))
+    #lire = csv.reader(f, delimiter=";")
+    #for ligne in lire:
+        #dates.append(float(ligne[3]))
+        # seaLevels.append(getFloatValue(ligne[6]))
 
     #Ajout de la prédiction
-    dates.append(2100)
-    seaLevels.append(max(seaLevels) + 600)
+    #dates.append(2100)
+    #seaLevels.append(max(seaLevels) + 600)
 
     #Récupération de la variation la plus basse
-    minSeaLevel = min(seaLevels)
+    #minSeaLevel = min(seaLevels)
 
     #Ajustement des valeurs en positif
-    for i in range(0,len(dates)):
-        seaLevels[i] = seaLevels[i] - minSeaLevel
+    #for i in range(0,len(dates)):
+        #seaLevels[i] = seaLevels[i] - minSeaLevel
 
-    plotData(dates, seaLevels)
+    #print(dates[0])
+    #print(seaLevels[0])
 
+    #print(dates[int(len(seaLevels) / 2)])
+    #print(seaLevels[int(len(seaLevels) / 2)])
+
+    #print(dates[len(seaLevels)-1])
+    #print(seaLevels[len(seaLevels)-1])
+    #plotData(dates, seaLevels)
+
+def predictionWithoutChanges(date):
+    x = date - 1993
+    return -0.0259 * pow(x, 2) + 4.2196 * x
+
+def predictionWithBadChanges(date):
+    x = date - 1993
+    return -0.00714 * pow(x, 2) + 3.95714 * x
+
+with open("sea-level-predictions.csv", "w", newline="") as csvfile:
+    columnLabel = ["date", "predNoCh", "predBadCh"]
+    writer = csv.DictWriter(csvfile, fieldnames=columnLabel)
+    writer.writeheader()
+
+    initialWithoutChanges = predictionWithoutChanges(2020)
+    initialWithBadChanges = predictionWithBadChanges(2020)
+
+    for date in range(2020, 2101):
+        prediction = predictionWithoutChanges(date) - initialWithoutChanges
+        badPrediction = predictionWithBadChanges(date) - initialWithBadChanges
+
+        writer.writerow({"date": date, "predNoCh": prediction, "predBadCh": badPrediction})
