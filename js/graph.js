@@ -4,7 +4,7 @@
 **/
 const width = document.getElementById("container").offsetWidth * 0.90,
 midWidth = width / 2,
-graphHeight = 500,
+graphHeight = 600,
 
 /* Largeur des blocs de la légende du graphe */
 legendCellWidth = 80,
@@ -31,7 +31,6 @@ const svg = d3.select('#container').append("svg")
 	.attr("id", "svg-1")
 	.attr("width", 12 * (legendCellWidth + barSpace) + (legendCellWidth) + 10)
 	.attr("height", graphHeight + 10)
-	.attr("transform", "translate(0, 100)")
 	.attr("class", "svg");
 	
 /* Conteneur du graphe */
@@ -47,6 +46,10 @@ const legend = svg.append("g")
 **/
 function updateSeaLevel() {
 	yearSelected = document.getElementById("slider").value;
+	
+	/* Mise à jour du titre */
+	document.getElementById("titleYear").innerHTML = yearSelected;
+	
 	radios = document.getElementsByName("modeSelected");
 	modeSelected = null;
 	
@@ -70,9 +73,6 @@ function updateSeaLevel() {
 			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
 	}
 	
-	/* Mise à jour du titre */
-	document.getElementById("titleYear").innerHTML = yearSelected;
-	document.getElementById("titlePrediction").innerHTML = (seaLevelPrediction / 1000).toFixed(1) + "m";
 	
 	yPos = graphHeight - (seaLevelPrediction / 1000) * legendCellHeight;
 	
@@ -87,14 +87,18 @@ function updateSeaLevel() {
 			else
 				return legendColor[legendColor.length - 1];
 		});
+	seaLevelLabel
+		.attr("y", yPos - 10)
+		.text((seaLevelPrediction / 1000).toFixed(1) + "m");
 }
 
 /* Modification du style des légendes / titres */
 d3.select("#title")
 	.style("text-align", "center")
+	.style("padding-top", "30px");
 
-d3.select("#titlePrediction")
-	.style("text-align", "center")
+d3.select("#titleYear")
+	.style("text-align", "center");
 
 d3.select("#slider")
 	.style("width", "350px")
@@ -148,7 +152,7 @@ d3.csv(
 			.attr("x", legendCellWidth/2)
 			.attr("y", function(d){
 				if(d < 16)
-					return graphHeight - (d + 1) * legendCellHeight + 15;
+					return graphHeight - (d + 1) * legendCellHeight + 12;
 				else
 					return 0 + 15;
 					
@@ -196,10 +200,20 @@ d3.csv(
 	seaLevelLine = graph.append("line")
 		.style("stroke", "#43CCFF")
 		.style("stroke-width", 5)
-		.attr("x1", 5)
+		.attr("x1", 0)
 		.attr("y1", graphHeight)
 		.attr("x2", (data.length - 1) * (barWidth+barSpace))
 		.attr("y2", graphHeight);
+		
+	seaLevelLabel = graph.append("text")
+		.attr("x", (data.length - 1) * (barWidth+barSpace) - barWidth / 2)
+		.attr("y", graphHeight - 10)
+		.style("fill", "red")
+		.style("font-size", "18")
+		.style("font-weight", "bold")
+		.style("text-anchor", "middle")
+		.style("font-family", fontPolice)
+		.text("0.0m");
 });
 
 d3.csv(
