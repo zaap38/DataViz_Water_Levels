@@ -46,6 +46,15 @@
 		<h1 id="titlePrediction">0.0m</h1>
 		
 		<input id="slider" type="range" list="dates" value="2020" min="2020" max="2300" step="1"/>
+		
+		<div id="radioButtons">
+			<input type="radio" id="noChange" name="modeSelected" value="0" checked>
+			<label for="noChange">Aucun changement</label>
+			<input type="radio" id="degradation" name="modeSelected" value="1">
+			<label for="degradation">Dégradation</label>
+			<input type="radio" id="amelioration" name="modeSelected" value="2">
+			<label for="amelioration">Amélioration</label>
+		</div>
 	</div>
 
 	<button type="button" class="btn btn-primary" id="next-vizu" onclick="nextVizu(this);">Suivant</button>

@@ -45,18 +45,26 @@ const legend = svg.append("g")
 /**
  * Met à jour la position de la ligne en fonction de la prédiction à la date sélectionnée
 **/
-function updateSeaLevel(yearSelected) {
-	//modeSelected = document.getElementById("modeToggle").value;
-	modeSelected = 1;
+function updateSeaLevel() {
+	yearSelected = document.getElementById("slider").value;
+	radios = document.getElementsByName("modeSelected");
+	modeSelected = null;
+	
+	for (var i = 0, length = radios.length; i < length; i++) {
+		if (radios[i].checked)
+			modeSelected = radios[i].value;
+	}
 	
 	seaLevelPrediction = null;
 	
 	switch (modeSelected) {
-		case 0:
+		case '0':
 			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
+			console.log(0)
 			break;
-		case 1:
+		case '1':
 			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[1];
+			console.log(0)
 			break;
 		default:
 			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
@@ -68,9 +76,17 @@ function updateSeaLevel(yearSelected) {
 	
 	yPos = graphHeight - (seaLevelPrediction / 1000) * legendCellHeight;
 	
+	/* Mise à jour de la ligne */
 	seaLevelLine
 		.attr("y1", yPos)
-		.attr("y2", yPos);
+		.attr("y2", yPos)
+		.style("stroke", function(){
+			seaLevel = (seaLevelPrediction / 1000).toFixed(0);
+			if(seaLevel <= 16)
+				return legendColor[seaLevel];
+			else
+				return legendColor[legendColor.length - 1];
+		});
 }
 
 /* Modification du style des légendes / titres */
@@ -86,8 +102,17 @@ d3.select("#slider")
 	.style("display", "block")
 	.style("margin", "auto")
 	.on("input", function() {
-		updateSeaLevel(this.value);
+		updateSeaLevel();
 	});
+	
+d3.select("#radioButtons")
+	.style("text-align", "center")
+	.style("display", "block")
+	.style("margin", "auto")
+	.on("input", function() {
+		updateSeaLevel();
+	});
+	
 d3.csv(
 	"./db/world-countries-elevation.csv"
 ).then(function (data) {
@@ -188,4 +213,3 @@ d3.csv(
 });
 
 $("body").prepend('<h1 id="svg-2">Visu 2</h1>')
-
