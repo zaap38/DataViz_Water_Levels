@@ -66,22 +66,40 @@ def plotData(dates, seaLevels):
 
 def predictionWithoutChanges(date):
     x = date - 1993
-    return -0.0259 * pow(x, 2) + 4.2196 * x
+    return (5.95 / 196) * pow(x, 2) + (461280 / 134400) * x
 
-def predictionWithBadChanges(date):
+def predictionWithWorstChanges(date):
     x = date - 1993
-    return -0.00714 * pow(x, 2) + 3.95714 * x
+    return ((54 - 14 * (108480 / 134400)) / 196) * pow(x, 2) + (108480 / 134400) * x
 
 with open("sea-level-predictions.csv", "w", newline="") as csvfile:
-    columnLabel = ["date", "predNoCh", "predBadCh"]
+    columnLabel = ["date", "predNoCh", "predWorstCh"]
     writer = csv.DictWriter(csvfile, fieldnames=columnLabel)
     writer.writeheader()
 
     initialWithoutChanges = predictionWithoutChanges(2020)
-    initialWithBadChanges = predictionWithBadChanges(2020)
+    initialWithWorstChanges = predictionWithWorstChanges(2020)
+
+    dates = []
+    predNoCh = []
+    predWorstCh = []
 
     for date in range(2020, 2101):
         prediction = predictionWithoutChanges(date) - initialWithoutChanges
-        badPrediction = predictionWithBadChanges(date) - initialWithBadChanges
+        worstPrediction = predictionWithWorstChanges(date) - initialWithWorstChanges
 
-        writer.writerow({"date": date, "predNoCh": prediction, "predBadCh": badPrediction})
+        writer.writerow({"date": date, "predNoCh": prediction, "predWorstCh": worstPrediction})
+
+        dates.append(date)
+        predNoCh.append(prediction)
+        predWorstCh.append(worstPrediction)
+
+    smoothPredNoCh = savgol_filter(predNoCh, 51, 2)
+    plt.plot(dates, smoothPredNoCh)
+    smoothPredWorstCh = savgol_filter(predWorstCh, 51, 2)
+    plt.plot(dates, smoothPredWorstCh, color='red')
+
+    plt.title("sea level predictions from 1993")
+    plt.xlabel("Dates")
+    plt.ylabel("Sea level predictions")
+    plt.show()
