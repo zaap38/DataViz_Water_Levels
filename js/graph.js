@@ -2,7 +2,7 @@
 /**
  * Déclaration des variables
 **/
-const width = document.getElementById("container").offsetWidth * 0.90,
+width = document.getElementById("container").offsetWidth * 0.90,
 midWidth = width / 2,
 graphHeight = 600,
 
@@ -225,5 +225,3 @@ d3.csv(
 		seaLevelPerYear.set(data[i].date, predictions);
 	}
 });
-
-$("body").prepend('<h1 id="svg-2">Visu 2</h1>')

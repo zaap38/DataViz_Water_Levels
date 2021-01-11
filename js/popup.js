@@ -51,21 +51,16 @@ function nextVizu() {
         $("#popup-background").css("display", "block");
     }
 
+    console.log($("#svg-1").css("display"))
+
     //Switch to next visualization
-    var svgs = $("#container").children();
-
-    if(svgs.length == 1) {
-        // Display second visu
-        if($("#svg-1").css("display") == "block"){
-            $("#svg-1").css("display", "none");     
-            $("#svg-2").css("display", "block");
-        } /*else { //Display 2 vizu
-            $("#svg-1").css("display", "block");
-            $("#svg-2").css("display", "block");
-            $("#svg-2").css("float", "left");
-        }*/
-
-        //TODO : Faire visu 2
+    if($("#svg-1").css("display") == "block"){
+        $("#svg-1").css("display", "none");     
+        $("#svg-2").css("display", "block");
+    } else { //Display 2 vizu
+        $("#svg-1").css("display", "block");
+        $("#svg-2").css("display", "block");
+        $("#svg-2").css("float", "left");
     }
 }
 

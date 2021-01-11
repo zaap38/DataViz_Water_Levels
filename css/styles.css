@@ -1,3 +1,7 @@
+#svg-1 {
+	zoom: 0.8;
+}
+
 svg{
 	display: block;
 	margin: auto;
@@ -74,13 +78,30 @@ input, label {
 }
 
 #next-vizu {
+	position: relative;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 5%;
+	margin-top: 1em;
 }
 
 #svg-2 {
 	display: none;
-	text-align: center;
+}
+
+.province:hover {
+    fill: #666;
+}
+.hidden {
+    display: none;
+}
+
+div.tooltip {
+    color: #222;
+    background-color: #fff;
+    padding: .5em;
+    text-shadow: #f5f5f5 0 1px 0;
+    border-radius: 2px;
+    opacity: 0.9;
+    position: absolute;
 }
