@@ -11,6 +11,8 @@
 	<link href="./css/styles.css" rel="stylesheet">
 </head>
 
+<title>Montée des eaux - Groupe 14</title>
+
 <body>
 	<div id="popup-background"></div>
 	<div id="popup-start-vizu-1" class="modal">
@@ -57,9 +59,79 @@
 		</div>
 	</div>
 
+	<div id="complement-legend-visu-2">
+		<p>
+			Essayer de survoler les différents départements avec votre souris, vous verrez une bulle s'afficher.</br>
+			Cette bulle permet de voir le nom du département ainsi que sa population touchée par la montée des eaux !</br>
+		</p>
+	</div>
+
 	<button type="button" class="btn btn-primary" id="next-vizu" onclick="nextVizu(this);">Suivant</button>
+
+	<div id="credit-view">
+		<div id="dataset-div">
+			<h2>Jeux de données utilisés & Traitements</h2>
+			<ul>
+				<li>Un jeu de données OpenData contenant toutes les communes de France avec (entre autre) leurs départements, leurs altitudes et leurs population : 
+					<a href="https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/table/">ici</a>. Nous avons filtré ce jeu de données
+					pour enlever toutes les villes se trouvant à plus de 70m d'altitude. Ce filtre permet de gagner en rapidité et ne fait pas perdre d'information
+					car dans nos prédictions, le niveau de la mer montera au maximum de 20.6m.
+				</li>
+				<li>
+					Un jeu de donnée de la NASA contenant les variations du niveau de la mer depuis 1993, ce jeu de données nous a permis de faire différentes prédictions
+					à l'aide d'un script Python que nous avons développé, le résultat de ce script constitue un nouveau jeu de donnée. Jeu de donnée retrouvable
+					 <a href="https://climate.nasa.gov/vital-signs/sea-level/">ici</a> (nécessite un compte Earthdata).
+				</li>
+				<li>
+					Le dernier jeu de donnée est fait à la main. Il permet de stocker les villes du monde utiles pour la première visualisation ainsi que leurs altitudes moyennes.
+					Il était inutile d'utiliser un jeu de données plus grand donc nous avons trouvé plus judicieux de le créer nous-même pour gagner en performance.
+				</li>
+			</ul>	
+		</div>
+		<div id="lim-pb-div">
+			<h2>Limites/Problèmes d'interprétation</h2>
+			<ul>
+			</ul>	
+		</div>
+		<div id="lib-code-div">
+			<h2>Libraire</h2>
+			<ul>
+				<li>D3 version 6 : <a href="https://d3js.org/">d3js.org</a>. Utilisé pour créer nos visualisations.</li>
+				<li>JQuery 3.2.1 : <a href="https://www.w3schools.com/jquery/">tutoriel JQuery W3C</a>. Utilisé pour faciliter le développement et surtout la gestion du DOM.</li>
+				<li>Popper 1.12.3 : <a href="https://popper.js.org/">popper.js.org</a>. Utilisé pour la gestion des popups.</li>
+				<li>Bootstrap 4.0.0 : <a href="https://getbootstrap.com/">getbootstrap.com</a>. Utilisé pour la mise en page et le design.</li>
+				<li>D3-dsv version 1 : <a href="https://github.com/d3/d3-dsv">page GitHub de d3-dsv</a>. Utilisé pour ouvrir des fichiers csv avec délimiteur point-virgule avec d3.</li>
+			</ul>	
+		</div>
+		<div id="lib-code-div">
+			<h2>Source d'information & Inspiration</h2>
+			<ul>
+				<li><a href="https://www.nausicaa.fr/article/la-montee-des-eaux-en-france-en-2040/">Article de Nausicea expliquant les causes et les conséquences de l'élévation du niveau
+				de l'eau à l'échelle nationale.</a></li>
+				<li><a href="https://fr.wikipedia.org/wiki/%C3%89l%C3%A9vation_du_niveau_de_la_mer">Page Wikipédia sur l'élévation du niveau de la mer, donnant des explications sur les causes
+				et les conséquences ainsi que des prédictions faites par de grandes organisations mondiales (tel que le GIEC).</a></li>
+				<li><a href="https://public.tableau.com/profile/leon8578#!/vizhome/Maprisingwaterlevels/Dashboard1">Visualisation Tableau qui montre le nombre de personnes touchées par pays par la montée
+				des eaux (source d'inspiration pour la deuxième visualisation, mais incomplète et à l'échelle mondiale).</a></li>
+			</ul>	
+		</div>
+		<div id="contact-div">
+			<h2>Nos contacts</h2>
+			<ul>
+				<li>Louis Guillotin, mail : louis.guillotin@etu.univ-lyon1.fr, GitHub : <a href="https://github.com/Kcrach">https://github.com/Kcrach</a></li>
+				<li>Benoît Alcaraz</li>
+				<li>José Villamar</li>
+				<li>Sylvain La</li>
+			</ul>	
+		</div>
+	</div>
+
+	<div id="button-credit-view">
+		<button type="button" class="btn btn-secondary" id="back-visu-1" onclick="back-visu-1;">Retour sur la première visualisation</button>
+		<button type="button" class="btn btn-secondary" id="back-visu-2" onclick="vizu2();">Retour sur la seconde visualisation</button>
+	</div>
 	
 	<script type="text/javascript" src ="./js/graph.js"></script>
 	<script type="text/javascript" src ="./js/visu2.js"></script>
+	<script type="text/javascript" src ="./js/creditView.js"></script>
 	<script type="text/javascript" src ="./js/popup.js"></script>
 </body>

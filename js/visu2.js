@@ -24,16 +24,39 @@ var projection = d3
 var color = d3.scaleQuantize()
     .range(["#e6e6ff","#ccccff","#b3b3ff","#9999ff", "#8080ff", "#6666ff", "#4d4dff", "#3333ff", "#1a1aff", "#0000ff"]);
 
+var colorLegend = ["#e6e6ff","#ccccff","#b3b3ff","#9999ff", "#8080ff", "#6666ff", "#4d4dff", "#3333ff", "#1a1aff", "#0000ff"];
+
 var path = d3.geoPath().projection(projection);
 
 var tooltip = d3.select('body').append('div')
     .attr('class', 'hidden tooltip');
 
-d3.dsv(';', dataAltitudePopulation).then(function(data) {
-    var affectedPop = []
+var min = 0;
+var max = 400000;
+var legendCellSize = 20;
 
+var legendVisu2 = svg2.append('g')
+    .attr('transform', 'translate(70, 220)');
+
+legendVisu2.selectAll()
+    .data(d3.range(colorLegend.length))
+    .enter().append('svg:rect')
+        .attr('height', legendCellSize + 'px')
+        .attr('width', legendCellSize + 'px')
+        .attr('x', 5)
+        .attr('y', d => (colorLegend.length - 1 - d) * legendCellSize)
+        .style("fill", d => colorLegend[d]);
+
+var legendScale = d3.scaleLinear().domain([min, max])
+        .range([colorLegend.length * legendCellSize, 0]);
+        
+legendAxis = legendVisu2.append("g")
+    .attr("class", "axis")
+    .call(d3.axisLeft(legendScale));
+
+d3.dsv(';', dataAltitudePopulation).then(function(data) {
     //Set input domain for color scale
-    color.domain([0, 400000]);
+    color.domain([min, max]);
 
     d3.json(departement).then(function(json) {
 
@@ -79,7 +102,6 @@ d3.dsv(';', dataAltitudePopulation).then(function(data) {
                     
                     if (dataDep == jsonDep && altitude <= seaLevel) {
                         json.features[j].properties.value += parseFloat(data[i].population.replace(',', '.')) * 1000.0;
-                        console.log(data[i].population)
 
                         break;
                     }
@@ -108,7 +130,6 @@ d3.dsv(';', dataAltitudePopulation).then(function(data) {
               .style("fill", function(d) {
                   //on prend la valeur recuperee plus haut
                   var value = d.properties.value;
-                  console.log(value)
 
                   if (value) {
                       return color(value);
@@ -131,7 +152,6 @@ d3.dsv(';', dataAltitudePopulation).then(function(data) {
                             'px; top:' + (posVizu.top + mousePosition[1] - 35) + 'px')
                     // on recupere le nom de l'etat 
                     .html(d.properties.nom + "</br>" + d.properties.value);
-                    console.log(d.properties)
               })
               .on('mouseout', () => {
                   // on cache le toolip

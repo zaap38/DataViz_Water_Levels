@@ -105,3 +105,108 @@ div.tooltip {
     opacity: 0.9;
     position: absolute;
 }
+
+#complement-legend-visu-2 {
+	text-align: center;
+	display: none;
+	margin: auto;
+	margin-top: 0.5em;
+	background-color: white;
+	border : 1px #636363 solid;
+	border-radius: 2em;
+	padding : 0.5em;
+	width: 40em;
+}
+
+#complement-legend-visu-2 p {
+	margin-bottom: 0;
+}
+
+#credit-view {
+	display: none;
+}
+
+#credit-view div {
+	margin: auto;
+	margin-top: 0.5em;
+	background-color: white;
+	border : 1px #636363 solid;
+	border-radius: 2em;
+	padding : 0.5em;
+	width: 80%;
+}
+
+#credit-view h2 {
+	text-align: center;
+}
+
+#back-visu-1, #back-visu-2{
+	margin-top : 1em;
+	margin-bottom : 1em;
+	display : none;
+}
+
+#back-visu-1 {
+	float: left;
+}
+
+#back-visu-2 {
+	float: right;
+}
+
+@media (max-width: 860px) {
+	#svg-1 {
+		zoom : 0.7;
+	}
+}
+
+@media (max-width: 760px) {
+	#svg-1 {
+		zoom : 0.5;
+	}
+}
+
+@media (max-width: 550px) {
+	#svg-1 {
+		zoom : 0.4;
+	}
+}
+
+@media (max-width: 640px) {
+	#svg-2 {
+		zoom : 0.7;
+	}
+	#complement-legend-visu-2 {
+		width : 30em;
+	}
+}
+
+@media (max-width: 460px) {
+	#svg-2 {
+		zoom : 0.5;
+	}
+	#svg-1 {
+		width : 0.35;
+	}
+	#complement-legend-visu-2 {
+		width: 20em;
+	}
+}
+
+@media (max-width: 330px) {
+	#svg-2 {
+		zoom : 0.3;
+	}
+	#complement-legend-visu-2 {
+		width: 10em;
+	}
+}
+
+@media (max-width: 380px) {
+	#slider {
+		zoom : 0.6;
+	}
+	#svg-1 {
+		zoom : 0.3;
+	}
+}

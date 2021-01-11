@@ -55,12 +55,11 @@ function nextVizu() {
 
     //Switch to next visualization
     if($("#svg-1").css("display") == "block"){
-        $("#svg-1").css("display", "none");     
+        $("#svg-1").css("display", "none");  
+        $("#complement-legend-visu-2").css("display", "block");
         $("#svg-2").css("display", "block");
     } else { //Display 2 vizu
-        $("#svg-1").css("display", "block");
-        $("#svg-2").css("display", "block");
-        $("#svg-2").css("float", "left");
+        displayCreditView();
     }
 }
 
