@@ -76,20 +76,22 @@ function updateSeaLevel() {
 	
 	yPos = graphHeight - (seaLevelPrediction / 1000) * legendCellHeight;
 	
-	/* Mise à jour de la ligne */
-	seaLevelLine
-		.attr("y1", yPos)
-		.attr("y2", yPos)
-		.style("stroke", function(){
-			seaLevel = (seaLevelPrediction / 1000).toFixed(0);
-			if(seaLevel <= 16)
-				return legendColor[seaLevel];
-			else
-				return legendColor[legendColor.length - 1];
-		});
-	seaLevelLabel
-		.attr("y", yPos - 10)
-		.text((seaLevelPrediction / 1000).toFixed(1) + "m");
+	if($("#svg-1").css("display") == "block") {
+		/* Mise à jour de la ligne */
+		seaLevelLine
+			.attr("y1", yPos)
+			.attr("y2", yPos)
+			.style("stroke", function(){
+				seaLevel = (seaLevelPrediction / 1000).toFixed(0);
+				if(seaLevel <= 16)
+					return legendColor[seaLevel];
+				else
+					return legendColor[legendColor.length - 1];
+			});
+		seaLevelLabel
+			.attr("y", yPos - 10)
+			.text((seaLevelPrediction / 1000).toFixed(1) + "m");
+	}
 }
 
 /* Modification du style des légendes / titres */
