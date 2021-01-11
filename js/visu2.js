@@ -64,9 +64,9 @@ d3.dsv(';', dataAltitudePopulation).then(function(data) {
             // code en cas de mise a jour de la carte / de changement de semaine
             for (var i = 0; i < data.length; i++) {
                 //CP du departement
-                if (data[i].cp.includes("2A")) {
+                if (data[i].cINSEE.includes("2A")) {
                     dataDep = "2A";
-                } else if (data[i].cp.includes("2B")) {
+                } else if (data[i].cINSEE.includes("2B")) {
                     dataDep = "2B";
                 } else {
                     dataDep = parseInt(data[i].cp / 1000);
