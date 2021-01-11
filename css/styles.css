@@ -144,14 +144,20 @@ div.tooltip {
 	margin-top : 1em;
 	margin-bottom : 1em;
 	display : none;
+	position: fixed;
+    bottom: 0;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 #back-visu-1 {
 	float: left;
+    left: 0;
 }
 
 #back-visu-2 {
 	float: right;
+    right: 0;
 }
 
 @media (max-width: 860px) {

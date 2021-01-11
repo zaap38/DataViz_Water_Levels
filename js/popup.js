@@ -51,8 +51,6 @@ function nextVizu() {
         $("#popup-background").css("display", "block");
     }
 
-    console.log($("#svg-1").css("display"))
-
     //Switch to next visualization
     if($("#svg-1").css("display") == "block"){
         $("#svg-1").css("display", "none");  
