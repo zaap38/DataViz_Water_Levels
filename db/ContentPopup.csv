@@ -1,20 +1,20 @@
 ﻿id;header;content
-popup-start-vizu-1;<p>Savez vous quelle est, en moyenne, la hausse annuelle du niveau de l'eau globale ?</p>;"<p>De nos jours, le niveau global de l'eau connaît une hausse d'environ 3,3 millimètres par an, ce qui n'est pas énorme.
+popup-start-vizu-1;<p>Savez vous quelle est, en moyenne, la hausse annuelle du niveau de la mer ?</p>;"<p>De nos jours, le niveau global de l'eau connaît une hausse d'environ 3,3 millimètres par an, ce qui n'est pas énorme.
 						Cependant, cette augmentation n'est pas constante au fil du temps ... Et c'est bien ça le problème !</br>
-						Beaucoup de chercheurs prédisent une augmentation (linéaire pour les plus optimistes, exponentielle pour les plus pessismistes) de cette hausse.</br>
+						Beaucoup de chercheurs prédisent une augmentation (linéaire pour les plus optimistes, exponentielle pour les plus pessimistes) de cette hausse.</br>
 
 						<img src=""./img/Popup1.gif"" id=""popup-1-img""/>
 
 						</br>
 						
 						Mais comment faire pour changer ce courant ?</p>"
-popup-start-vizu-2;<p>Connaissez vous les causes de cette montée des eaux ?</p>;"<p>Il y a une bonne part de cause naturelle à la montée des eaux tel que la dillatation de l'eau et certaines catastrophes naturelles.</br>
+popup-start-vizu-2;<p>Connaissez vous les causes de cette montée des eaux ?</p>;"<p>Il y a une bonne part de causes naturelles à la montée des eaux tel que la dillatation de l'eau et certaines catastrophes naturelles.</br>
 Contrairement à ce que certaines personnes pensent, la fonte des banquises n'est absolument pas une cause de ce phénomène, en revanche la fonte des glaciers
 l'est. En effet, un glaçon solide est plus volumineux que fondu. Cependant la glace des glaciers terrestres ne se trouve pas dans l'eau de base, donc lorsque, elle fond,
-elle vient s'écouler dans les mers et océans. Et il est inutile de dire que cette fonte des glaces est en grande partie dût à l'Homme et au réchauffement
+elle vient s'écouler dans les mers et les océans. Et il est inutile de dire que cette fonte des glaces est en grande partie dût à l'Homme et au réchauffement
 climatique.</br> <img src=""./img/Popup2.gif"" id=""popup-2-img""/> </br>
 
-Il y a évidemment beaucoup d'autres raisons expliquant la montée des eaux mais la plus connu reste la fonte des glaciers terrestres. </p>"
+Il y a évidemment beaucoup d'autres raisons expliquant la montée des eaux mais la plus connue reste la fonte des glaciers terrestres. </p>"
 popup-start-vizu-3;<p>Quelles seront les conséquences d'une telle montée des eaux ?</p>;"<p>Ce site montre 2 conséquences de la montée des eaux ... des conséquences qui peuvent être catastophiques. Mais il en existe beaucoup d'autres et nous invitons les plus
 curieux d'entre vous, à se renseigner à ce propos.</br>
 
@@ -24,7 +24,7 @@ du monde : ce problème touchera tout le monde !</br>
 
 <img src=""./img/Popup3.gif"" id=""popup-3-img""/> </br>
 
-Une autre conséquence direct de celle-ci sera mise en avant dans une autre visualisation.</p>"
+Une autre conséquence directe de celle-ci sera mise en avant dans une autre visualisation.</p>"
 popup-start-vizu-4;<p>Comment éviter de tomber dans un scénario catastrophe ?</p>;"<p>Pour éviter un scénario aux conséquences catastrophiques pour la planète. L'Homme doit agir !</br>
 En effet, il faut réduire le réchauffement climatique pour stopper la fonte des glaciers terrestres. Pour ce faire, il faut 
 réduire la pollution. A l'échelle de chacun, cela revient à modifier sa façon de vivre : limiter les transports polluants, modifier sa façon de consommer (emballage plastique par exemple),

@@ -29,6 +29,7 @@ function displayFirstView() {
     $("#svg-1").css("display", "block");
     $("#svg-2").css("display", "none");
     $("#complement-legend-visu-2").css("display", "none");
+    $("#title").text("Prédiction du niveau des eaux pour l'année :");
 }
 
 function displaySecondView() {
@@ -45,4 +46,5 @@ function displaySecondView() {
     $("#svg-1").css("display", "none");
     $("#svg-2").css("display", "block");
     $("#complement-legend-visu-2").css("display", "block");
+    $("#title").text("Prédiction de la population et de la superficie touchées par la montée des eaux en :");
 }

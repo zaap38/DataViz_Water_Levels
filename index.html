@@ -19,13 +19,13 @@
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
-					<p>Savez vous quelle est, en moyenne, la hausse annuelle du niveau de l'eau globale ?</p>
+					<p>Savez vous quelle est, en moyenne, la hausse annuelle du niveau de la mer ?</p>
 				</div>
 				<div class="modal-body">
 					<p>
 						De nos jours, le niveau global de l'eau connaît une hausse d'environ 3,3 millimètres par an, ce qui n'est pas énorme.
 						Cependant, cette augmentation n'est pas constante au fil du temps ... Et c'est bien ça le problème !</br>
-						Beaucoup de chercheurs prédisent une augmentation (linéaire pour les plus optimistes, exponentielle pour les plus pessismistes) de cette hausse.</br>
+						Beaucoup de chercheurs prédisent une augmentation (linéaire pour les plus optimistes, exponentielle pour les plus pessimistes) de cette hausse.</br>
 
 						<img src="./img/Popup1.gif" id="popup-1-img"/>
 
@@ -50,7 +50,7 @@
 		<input id="slider" type="range" list="dates" value="2020" min="2020" max="2300" step="1"/>
 		
 		<div id="radioButtons">
-			<h5>Impact de l'homme: </h5>
+			<h5>Impact de l'Homme: </h5>
 			<input type="radio" id="noChange" name="modeSelected" value="0" checked>
 			<label for="noChange">Aucun changement</label>
 			<input type="radio" id="degradation" name="modeSelected" value="1">
@@ -62,7 +62,7 @@
 
 	<div id="complement-legend-visu-2">
 		<p>
-			Essayer de survoler les différents départements avec votre souris, vous verrez une bulle s'afficher.</br>
+			Essayez de survoler les différents départements avec votre souris, vous verrez une bulle s'afficher.</br>
 			Cette bulle permet de voir le nom du département ainsi que sa population touchée par la montée des eaux !</br>
 		</p>
 	</div>
@@ -79,12 +79,12 @@
 					car dans nos prédictions, le niveau de la mer montera au maximum de 20.6m.
 				</li>
 				<li>
-					Un jeu de donnée de la NASA contenant les variations du niveau de la mer depuis 1993, ce jeu de données nous a permis de faire différentes prédictions
-					à l'aide d'un script Python que nous avons développé, le résultat de ce script constitue un nouveau jeu de donnée. Jeu de donnée retrouvable
+					Un jeu de données de la NASA contenant les variations du niveau de la mer depuis 1993, ce jeu de données nous a permis de faire différentes prédictions
+					à l'aide d'un script Python que nous avons développé, le résultat de ce script constitue un nouveau jeu de donnée. Jeu de données de base retrouvable
 					 <a href="https://climate.nasa.gov/vital-signs/sea-level/">ici</a> (nécessite un compte Earthdata).
 				</li>
 				<li>
-					Le dernier jeu de donnée est fait à la main. Il permet de stocker les villes du monde utiles pour la première visualisation ainsi que leurs altitudes moyennes.
+					Le dernier jeu de données est fait à la main. Il permet de stocker les villes du monde utiles pour la première visualisation ainsi que leurs altitudes moyennes.
 					Il était inutile d'utiliser un jeu de données plus grand donc nous avons trouvé plus judicieux de le créer nous-même pour gagner en performance.
 				</li>
 			</ul>	
@@ -92,10 +92,24 @@
 		<div id="lim-pb-div">
 			<h2>Limites/Problèmes d'interprétation</h2>
 			<ul>
+				<li>
+					La première limite est que le public cible est un public peu renseigné sur le sujet. En effet, les explications ne sont pas très poussées et
+					permettent juste de déclencher la curiosité de l'utilisateur. Le but, ici est de sensibiliser tout type d'utilisateur, au risque de perdre un public
+					plus averti.
+				</li>
+				<li>
+					La limite de la première visualisation pourrait être le code couleur choisi. En effet, selon nous, celui-ci est parlant mais nous ne sommes pas certains
+					que cela le soit pour tout le monde.
+				</li>
+				<li>
+					La limite de la seconde visualisation pourrait être le fait qu'il manque les DOMs-TOMs, le problème étant que la projection GeoJSON ne donne pas la
+					possibilité de les afficher à l'écran sur la même carte que celle de la France Métropolitaine. Cela est dommage, car ce sont les territoires Français
+					qui seront probablement les plus touchés par la montée des eaux.
+				</li>
 			</ul>	
 		</div>
 		<div id="lib-code-div">
-			<h2>Libraire</h2>
+			<h2>Librairies</h2>
 			<ul>
 				<li>D3 version 6 : <a href="https://d3js.org/">d3js.org</a>. Utilisé pour créer nos visualisations.</li>
 				<li>JQuery 3.2.1 : <a href="https://www.w3schools.com/jquery/">tutoriel JQuery W3C</a>. Utilisé pour faciliter le développement et surtout la gestion du DOM.</li>
@@ -105,7 +119,7 @@
 			</ul>	
 		</div>
 		<div id="lib-code-div">
-			<h2>Source d'information & Inspiration</h2>
+			<h2>Sources d'information & Inspiration</h2>
 			<ul>
 				<li><a href="https://www.nausicaa.fr/article/la-montee-des-eaux-en-france-en-2040/">Article de Nausicea expliquant les causes et les conséquences de l'élévation du niveau
 				de l'eau à l'échelle nationale.</a></li>
@@ -113,6 +127,8 @@
 				et les conséquences ainsi que des prédictions faites par de grandes organisations mondiales (tel que le GIEC).</a></li>
 				<li><a href="https://public.tableau.com/profile/leon8578#!/vizhome/Maprisingwaterlevels/Dashboard1">Visualisation Tableau qui montre le nombre de personnes touchées par pays par la montée
 				des eaux (source d'inspiration pour la deuxième visualisation, mais incomplète et à l'échelle mondiale).</a></li>
+				<li><a href="https://www.clubic.com/mag/environnement-ecologie/actualite-850933-outils-effrayant-simuler-montee-niveau-oceans.html">Inspiration pour la première visualisation 
+				(celle sur le site n'est pas interactive et ne bouge pas dans le temps).</a></li>
 			</ul>	
 		</div>
 		<div id="contact-div">

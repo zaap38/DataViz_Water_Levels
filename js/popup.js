@@ -56,6 +56,7 @@ function nextVizu() {
         $("#svg-1").css("display", "none");  
         $("#complement-legend-visu-2").css("display", "block");
         $("#svg-2").css("display", "block");
+        $("#title").text("Prédiction de la population et de la superficie touchées par la montée des eaux en :");
     } else { //Display 2 vizu
         displayCreditView();
     }
