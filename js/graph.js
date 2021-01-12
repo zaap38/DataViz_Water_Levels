@@ -3,11 +3,13 @@
  * Déclaration des variables
 **/
 width = document.getElementById("container").offsetWidth * 0.90,
-midWidth = width / 2,
 graphHeight = 600,
 
 /* Largeur des blocs de la légende du graphe */
-legendCellWidth = 80,
+legendCellWidth = 100,
+
+/* Largeur des blocs de la légende du graphe */
+legendLabelWidth = 20,
 
 /* Largeur des blocs du graphe */
 barWidth = 80,
@@ -24,12 +26,12 @@ seaLevelPerYear = new Map();
 /* Ligne du niveau des eaux */
 seaLevelLine = null;
 
-/* Echelle de couleur pour la légende du graphe */
-const legendColor = ["#002e4d", "#003d66", "#004d80", "#005c99", "#006bb3", "#007acc", "#008ae6", "#0099ff", "#1aa3ff", "#33adff", "#4db8ff", "#66c2ff", "#80ccff", "#99d6ff", "#b3e0ff", "#ccebff", "#e6f5ff"];
+/* Echelle de couleur pour la légende du graphe */ //"#e6f5ff"
+const legendColor = ["#002e4d", "#003d66", "#004d80", "#005c99", "#006bb3", "#007acc", "#008ae6", "#0099ff", "#1aa3ff", "#33adff", "#4db8ff", "#66c2ff", "#80ccff", "#99d6ff", "#b3e0ff", "#ccebff"];
 
 const svg = d3.select('#container').append("svg")
 	.attr("id", "svg-1")
-	.attr("width", 12 * (legendCellWidth + barSpace) + (legendCellWidth) + 10)
+	.attr("width", 12 * (barWidth + barSpace) + (legendCellWidth) + 10)
 	.attr("height", graphHeight + 10)
 	.attr("class", "svg");
 	
@@ -37,9 +39,25 @@ const svg = d3.select('#container').append("svg")
 const graph = svg.append("g")
 	.attr("width", width-legendCellWidth)
 	.attr("transform", "translate("+legendCellWidth+", 0)");
+	
 /* Conteneur de la légende du graphe */
 const legend = svg.append("g")
-	.attr("width", legendCellWidth);
+	.attr("width", legendCellWidth-legendLabelWidth);
+	
+/* Conteneur du label de la légende du graphe */
+const legendLabel = svg.append("g")
+	.attr("width", legendLabelWidth)
+	.append("text")
+	.attr("x", legendLabelWidth / 2)
+	.attr("y", graphHeight / 3)
+	.style("font-size", "14")
+	.style("font-weight", "bold")
+	.style("text-anchor", "middle")
+	.style("font-family", "Verdana")
+	.style("writing-mode", "vertical-rl")
+	.style("text-orientation", "mixed")
+	.text("Altitude(en mm)");
+
 
 /**
  * Met à jour la position de la ligne en fonction de la prédiction à la date sélectionnée
@@ -69,14 +87,14 @@ function updateSeaLevel() {
 			.attr("y2", yPos)
 			.style("stroke", function(){
 				seaLevel = (seaLevelPrediction / 1000).toFixed(0);
-				if(seaLevel <= 16)
+				if(seaLevel <= 15)
 					return legendColor[seaLevel];
 				else
 					return legendColor[legendColor.length - 1];
 			});
 		seaLevelLabel
 			.attr("y", yPos - 10)
-			.text((seaLevelPrediction / 1000).toFixed(1) + "m");
+			.text("Niveau de la mer: " + (seaLevelPrediction / 1000).toFixed(1) + "m");
 	}
 }
 
@@ -119,7 +137,7 @@ d3.csv(
 		.data(d3.range(legendColor.length))
 		.enter().append("rect")
 			.attr("height", function(d){
-				if(d < 16)
+				if(d < 15)
 					return legendCellHeight;
 				else
 					return graphHeight - (legendColor.length - 1) * legendCellHeight;
@@ -127,7 +145,7 @@ d3.csv(
 			.attr("width", legendCellWidth)
 			.attr("x", 0)
 			.attr("y", function(d){
-				if(d < 16)
+				if(d < 15)
 					return graphHeight - (d + 1) * legendCellHeight;
 				else
 					return 0;
@@ -139,7 +157,7 @@ d3.csv(
 		.enter().append("text")
 			.attr("x", legendCellWidth/2)
 			.attr("y", function(d){
-				if(d < 16)
+				if(d < 15)
 					return graphHeight - (d + 1) * legendCellHeight + 12;
 				else
 					return 0 + 15;
@@ -150,12 +168,10 @@ d3.csv(
 			.style("text-anchor", "middle")
 			.style("font-family", fontPolice)
 			.text(function(d){
-				if(d < 16)
+				if(d < 15)
 					return d+1+"m";
-				else if(d == 16)
+				else if(d == 15)
 					return 35+"m";
-				else
-					return 50+"m";
 			});
 			
 	/**
@@ -194,14 +210,14 @@ d3.csv(
 		.attr("y2", graphHeight);
 		
 	seaLevelLabel = graph.append("text")
-		.attr("x", (data.length - 1) * (barWidth+barSpace) - barWidth / 2)
+		.attr("x", (data.length - 2) * (barWidth+barSpace) - 45)
 		.attr("y", graphHeight - 10)
-		.style("fill", "red")
+		.style("fill", "#0099ff")
 		.style("font-size", "18")
 		.style("font-weight", "bold")
 		.style("text-anchor", "middle")
 		.style("font-family", fontPolice)
-		.text("0.0m");
+		.text("Niveau de la mer: 0.0m");
 });
 
 d3.csv(
