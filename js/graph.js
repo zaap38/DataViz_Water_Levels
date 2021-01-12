@@ -51,28 +51,14 @@ function updateSeaLevel() {
 	document.getElementById("titleYear").innerHTML = yearSelected;
 	
 	radios = document.getElementsByName("modeSelected");
-	modeSelected = null;
+	modeSelected = 0;
 	
 	for (var i = 0, length = radios.length; i < length; i++) {
 		if (radios[i].checked)
 			modeSelected = radios[i].value;
 	}
 	
-	seaLevelPrediction = null;
-	
-	switch (modeSelected) {
-		case '0':
-			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
-			console.log(0)
-			break;
-		case '1':
-			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[1];
-			console.log(0)
-			break;
-		default:
-			seaLevelPrediction = seaLevelPerYear.get(yearSelected)[0];
-	}
-	
+	seaLevelPrediction = seaLevelPerYear.get(yearSelected)[modeSelected];	
 	
 	yPos = graphHeight - (seaLevelPrediction / 1000) * legendCellHeight;
 	
@@ -223,7 +209,7 @@ d3.csv(
 ).then(function (data) {
 	for(var i= 0; i < data.length; i++)
 	{
-		predictions = [data[i].predNoCh, data[i].predWorstCh]
+		predictions = [data[i].predNoCh, data[i].predWorstCh, data[i].predGoodCh]
 		seaLevelPerYear.set(data[i].date, predictions);
 	}
 });
