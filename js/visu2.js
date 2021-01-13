@@ -1,6 +1,6 @@
 var width = 600, height = 480;
 
-departement = "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson"
+departement = "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-avec-outre-mer.geojson"
 dataAltitudePopulation = "./db/villeInf70m.csv"
 
 var svg2 = d3
@@ -22,9 +22,9 @@ var projection = d3
 
 // On définit l’échelle de couleur
 var color = d3.scaleQuantize()
-    .range(["#e6e6ff","#ccccff","#b3b3ff","#9999ff", "#8080ff", "#6666ff", "#4d4dff", "#3333ff", "#1a1aff", "#0000ff"]);
+    .range(["#009BFF", "#0061FF", "#001FFF", "#0C00FF", "#000E9B", "#000644"]);
 
-var colorLegend = ["#e6e6ff","#ccccff","#b3b3ff","#9999ff", "#8080ff", "#6666ff", "#4d4dff", "#3333ff", "#1a1aff", "#0000ff"];
+var colorLegend = ["#009BFF", "#0061FF", "#001FFF", "#0C00FF", "#000E9B", "#000644"];
 
 var path = d3.geoPath().projection(projection);
 
@@ -83,18 +83,14 @@ d3.dsv(';', dataAltitudePopulation).then(function(data) {
 
             carte = svg2.selectAll("path")
               .data(json.features);
+
+            popDOM = 0
               
             // code en cas de mise a jour de la carte / de changement de semaine
             for (var i = 0; i < data.length; i++) {
                 //CP du departement
-                if (data[i].cINSEE.includes("2A")) {
-                    dataDep = "2A";
-                } else if (data[i].cINSEE.includes("2B")) {
-                    dataDep = "2B";
-                } else {
-                    dataDep = parseInt(data[i].cp / 1000);
-                }
-                
+                dataDep = data[i].codeDep;
+                  
                 var altitude = parseInt(data[i].altitude);
 
                 for (var j = 0; j < json.features.length; j++) {
@@ -102,13 +98,16 @@ d3.dsv(';', dataAltitudePopulation).then(function(data) {
                     
                     if (dataDep == jsonDep && altitude <= seaLevel) {
                         json.features[j].properties.value += parseFloat(data[i].population.replace(',', '.')) * 1000.0;
-
+                        break;
+                    } else if (dataDep == 97 && altitude <= seaLevel) {
+                        popDOM += parseFloat(data[i].population.replace(',', '.')) * 1000.0;
                         break;
                     }
                 }
             }
 
-            
+            $("#pop-monde").text(popDOM)
+
             carte.attr("class", "update")
                 .style("fill", function(d) {
                     //on prend la valeur recuperee plus haut

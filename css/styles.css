@@ -87,11 +87,9 @@ input, label {
 
 #svg-2 {
 	display: none;
+	background-color: #636363;
 }
 
-.province:hover {
-    fill: #666;
-}
 .hidden {
     display: none;
 }
@@ -107,19 +105,19 @@ div.tooltip {
 }
 
 #complement-legend-visu-2 {
-	text-align: center;
 	display: none;
+}
+
+#complement-legend-visu-2 p{
+	text-align: center;
 	margin: auto;
 	margin-top: 0.5em;
 	background-color: white;
 	border : 1px #636363 solid;
 	border-radius: 2em;
 	padding : 0.5em;
-	width: 40em;
-}
-
-#complement-legend-visu-2 p {
 	margin-bottom: 0;
+	width: 40em;
 }
 
 #credit-view {
@@ -159,6 +157,10 @@ div.tooltip {
 #back-visu-2 {
 	float: right;
     right: 0;
+}
+
+#svg-2 text {
+	color : white;
 }
 
 @media (max-width: 860px) {
