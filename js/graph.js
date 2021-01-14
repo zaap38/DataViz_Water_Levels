@@ -29,7 +29,7 @@ seaLevelLine = null;
 /* Echelle de couleur pour la légende du graphe */ //"#e6f5ff"
 const legendColor = ["#002e4d", "#003d66", "#004d80", "#005c99", "#006bb3", "#007acc", "#008ae6", "#0099ff", "#1aa3ff", "#33adff", "#4db8ff", "#66c2ff", "#80ccff", "#99d6ff", "#b3e0ff", "#ccebff"];
 
-const svg = d3.select('#container').append("svg")
+const svg = d3.select("#container").append("svg")
 	.attr("id", "svg-1")
 	.attr("width", 12 * (barWidth + barSpace) + (legendCellWidth) + 10)
 	.attr("height", graphHeight + 10)
@@ -87,15 +87,15 @@ function updateSeaLevel() {
 			.attr("y2", yPos)
 			
 			.attr("y", yPos)
-			.attr("height", graphHeight - yPos)
+			.attr("height", graphHeight - yPos);
 			
-			.style("fill", function(){
+			/*.style("fill", function(){
 				seaLevel = (seaLevelPrediction / 1000).toFixed(0);
 				if(seaLevel <= 15)
 					return legendColor[seaLevel];
 				else
 					return legendColor[legendColor.length - 1];
-			});
+			});*/
 		seaLevelLabel
 			.attr("y", yPos - 10)
 			.text("Niveau de la mer: " + (seaLevelPrediction / 1000).toFixed(1) + "m");
@@ -126,7 +126,52 @@ d3.select("#radioButtons")
 	.on("input", function() {
 		updateSeaLevel();
 	});
+
+var tooltipNoCh = d3.select("#container")
+	.append("div")
+	.style("position", "absolute")
+	.style("visibility", "hidden")
+	.style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px");
 	
+d3.select("#labelNoChange")
+	.on("mouseover", function(){
+		xPos = document.getElementById("labelNoChange").getBoundingClientRect().left - 60;
+		yPos = document.getElementById("labelNoChange").getBoundingClientRect().top - 30;
+		
+		tooltipNoCh.style("left", xPos+"px")
+			.style("top", yPos+"px")
+			.style("visibility", "visible")
+			.text("Cas où rien n'est fait pour limiter le réchauffement climatique");
+	})
+	.on("mouseout", function(){tooltipNoCh.style("visibility", "hidden");});
+	
+d3.select("#labelDegradation")
+	.on("mouseover", function(){
+		xPos = document.getElementById("labelDegradation").getBoundingClientRect().left - 60;
+		yPos = document.getElementById("labelDegradation").getBoundingClientRect().top - 30;
+		
+		tooltipNoCh.style("left", xPos+"px")
+			.style("top", yPos+"px")
+			.style("visibility", "visible")
+			.text("Cas où la situation s'aggrave d'avantage");
+	})
+	.on("mouseout", function(){tooltipNoCh.style("visibility", "hidden");});
+	
+d3.select("#labelAmelioration")
+	.on("mouseover", function(){
+		xPos = document.getElementById("labelAmelioration").getBoundingClientRect().left - 60;
+		yPos = document.getElementById("labelAmelioration").getBoundingClientRect().top - 30;
+		
+		tooltipNoCh.style("left", xPos+"px")
+			.style("top", yPos+"px")
+			.style("visibility", "visible")
+			.text("Cas où la population réagit et contribue à la diminution du réchauffement climatique");
+	})
+	.on("mouseout", function(){tooltipNoCh.style("visibility", "hidden");});
+
 d3.csv(
 	"./db/world-countries-elevation.csv"
 ).then(function (data) {
@@ -206,7 +251,7 @@ d3.csv(
 	 * Construction de la droite du niveau des eaux
 	**/	
 	seaLevelLine = graph.append("rect")
-		.style("fill", "#43CCFF")
+		.style("fill", "#4db8ff")
 		.attr("x", 0)
 		.attr("y", graphHeight)
 		.attr("width", (data.length - 1) * (barWidth+barSpace) - barSpace)
