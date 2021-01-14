@@ -1,5 +1,3 @@
-Projet de Data Vizualisation : visualisation de l'effet de la montée des eaux sur la population.
-
 # Data visualization project: Impact of rising water levels
 
 ![Thumbnail](thumbnail.png)
@@ -20,3 +18,12 @@ The second is map a French departments that show the number of population affect
 ## Scoping document
 
 The [scoping document](DocumentCadrage.pdf) is at the root of the project.
+
+## Data
+
+You can find all our data in the **/db** folder.
+We get some from here:
+ - https://climate.nasa.gov/vital-signs/sea-level/
+ - https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/table/
+
+Some others were created by us with Python scripts that are in the same folder. These data were created from real data and predictions but re-arrange to perfectly fit with our visualizations.
