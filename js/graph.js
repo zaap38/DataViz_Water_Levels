@@ -56,7 +56,7 @@ const legendLabel = svg.append("g")
 	.style("font-family", "Verdana")
 	.style("writing-mode", "vertical-rl")
 	.style("text-orientation", "mixed")
-	.text("Altitude(en mm)");
+	.text("Altitude(en m)");
 
 
 /**
@@ -85,7 +85,11 @@ function updateSeaLevel() {
 		seaLevelLine
 			.attr("y1", yPos)
 			.attr("y2", yPos)
-			.style("stroke", function(){
+			
+			.attr("y", yPos)
+			.attr("height", graphHeight - yPos)
+			
+			.style("fill", function(){
 				seaLevel = (seaLevelPrediction / 1000).toFixed(0);
 				if(seaLevel <= 15)
 					return legendColor[seaLevel];
@@ -201,13 +205,13 @@ d3.csv(
 	/**
 	 * Construction de la droite du niveau des eaux
 	**/	
-	seaLevelLine = graph.append("line")
-		.style("stroke", "#43CCFF")
-		.style("stroke-width", 5)
-		.attr("x1", 0)
-		.attr("y1", graphHeight)
-		.attr("x2", (data.length - 1) * (barWidth+barSpace))
-		.attr("y2", graphHeight);
+	seaLevelLine = graph.append("rect")
+		.style("fill", "#43CCFF")
+		.attr("x", 0)
+		.attr("y", graphHeight)
+		.attr("width", (data.length - 1) * (barWidth+barSpace) - barSpace)
+		.attr("height", 0.1)
+		.lower();
 		
 	seaLevelLabel = graph.append("text")
 		.attr("x", (data.length - 2) * (barWidth+barSpace) - 45)
