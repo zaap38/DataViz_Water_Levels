@@ -219,3 +219,16 @@ div.tooltip {
 		zoom : 0.3;
 	}
 }
+
+.flex-container {
+	display: flex;
+	flex-direction: col;
+}
+
+.floatLeft {
+	flex: 1;
+}
+
+.floatRight{
+	flex: 1;
+}
