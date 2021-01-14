@@ -20,11 +20,3 @@ The second is map a French departments that show the number of population affect
 ## Scoping document
 
 The [scoping document](DocumentCadrage.pdf) is at the root of the project.
-
-### Lancement de l’application
-
-```shell script
-python3 *.py
-```
-*(Avec \* étant les noms de fichiers décrits dans Modules)*<br>
-**Attention le temps de calcul des benchmarks est élevé (~1h pour les réseaux superficiels, jusqu'à 12h pour les réseaux profonds)**
