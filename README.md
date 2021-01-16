@@ -10,10 +10,10 @@
  
 ## Description
 
-The aim of this project is to raise public awareness of global warming.
-To do that, we have created 2 visualization that show predictions of rising water levels, which is one of the consequences of this phenomenon.
-THe first one is a bar chart that show the sea level in relation to the altitude of common cities.
-The second is map a French departments that show the number of population affected by rising water levels for each one.
+The aim of this project is to warn public about global warming.
+To do that, we created two visualizations showing predictions of rising water levels in the futur, which is one of the consequences of this phenomenon.
+The first one is a bar chart showing the sea level according to the altitude of common cities.
+The second is map of French departments showing the number of persons affected by rising water levels for each one.
 
 ## Scoping document
 
@@ -26,4 +26,4 @@ We get some from here:
  - https://climate.nasa.gov/vital-signs/sea-level/
  - https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/table/
 
-Some others were created by us with Python scripts that are in the same folder. These data were created from real data and predictions but re-arrange to perfectly fit with our visualizations.
+Some others were created by us using Python scripts located in the same folder. These data were created from real data and predictions but re-arranged to perfectly fit within our visualizations.
