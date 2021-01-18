@@ -10,6 +10,8 @@
  
 ## Description
 
+Our visualization can be saw on https://zaap38.github.io/
+
 The aim of this project is to warn public about global warming.
 To do that, we created two visualizations showing predictions of rising water levels in the futur, which is one of the consequences of this phenomenon.
 The first one is a bar chart showing the sea level according to the altitude of common cities.
